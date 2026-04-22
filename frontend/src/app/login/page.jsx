@@ -1,26 +1,23 @@
 "use client";
+
+import { login } from "../api-fetch";
+
 const Login = () => {
-	// const [loginData, setLoginData] = useState({
-	//     email: "",
-	//     password: "",
-	// });
-
-	// const handleChange = (e) => {
-	//     const {name, value} = e.target;
-	//     setLoginData({
-	//         ...loginData,
-	//         [name]: value,
-	//     });
-	// };
-
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
-        let data = {
-            email: formData.get("email"),
-            password: formData.get("password"),
-        }; 
-        alert(JSON.stringify(data));
+		let data = {
+			email: formData.get("email"),
+			password: formData.get("password"),
+		};
+		login(data.email, data.password)
+			.then((res) => console.log(res))
+			.then(() => {
+				setTimeout(() => {
+					window.location.href = "/";
+				}, 3000);
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -28,7 +25,7 @@ const Login = () => {
 			<div className="container mx-auto">
 				<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 					<div>
-						<form action="" onSubmit={onSubmit}>
+						<form action="" onSubmit={(e) => onSubmit(e)}>
 							<input
 								className="border"
 								type="email"

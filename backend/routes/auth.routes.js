@@ -1,13 +1,18 @@
-const { registration, verify } = require("../controllers/auth.controllers");
+const {
+	registration,
+	verify,
+	getAllUsers,
+	login
+} = require("../controllers/auth.controllers");
 
-const express = require("express")
+const express = require("express");
 
 const authRouter = express.Router();
 // /api/v1/auth/register
-authRouter.post('/register', registration)
+authRouter.post("/register", registration);
+authRouter.post("/login", login);
 // verify email route
-authRouter.get('/verify/:id', verify)
-
-
+authRouter.get("/users", getAllUsers);
+authRouter.get("/verify/:id", verify);
 
 module.exports = authRouter;
