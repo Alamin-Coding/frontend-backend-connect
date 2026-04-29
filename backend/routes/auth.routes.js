@@ -4,6 +4,7 @@ const {
   getAllUsers,
   login,
   createCustomer,
+  getAllCustomers,
 } = require("../controllers/auth.controllers");
 
 const express = require("express");
@@ -17,6 +18,10 @@ authRouter.post("/login", login);
 authRouter.get("/users", getAllUsers);
 authRouter.get("/verify/:id", verify);
 authRouter.post("/create-customer", roleValidationMiddleware, createCustomer);
+
+// get all customers
+authRouter.get("/customers", roleValidationMiddleware, getAllCustomers);
+
 // customer editing 
 
 // customer deleting

@@ -103,10 +103,22 @@ const createCustomer = async (req, res) => {
   });
 };
 
+// get all customers
+const getAllCustomers = async (req, res) => {
+  const customers = await Customer.find();
+  return res.status(200).send(customers);
+}
+
+// Edit customer
+
+
+// Delete customer
+
 module.exports = {
   registration,
   login,
   verify,
   getAllUsers,
   createCustomer,
+  getAllCustomers
 };
